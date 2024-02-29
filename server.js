@@ -31,8 +31,8 @@ app.use('/contact',contactRouter);
 app.use('/booking',bookingRouter);//we tell which router to handle the route
 //integrate database
 
-const port=80;
+const port=3000;
 
-app.listen(process.env.PORT||80,()=>{
+app.listen(process.env.PORT||3000,()=>{
     console.log(`this application started successfully on port:${port}`);
 })
