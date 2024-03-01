@@ -1,5 +1,8 @@
 const https=require("https");
-const path=require("path")
+const mysql=require("mysql");
+const path=require("path");
+const dotenv= require('dotenv');
+dotenv.config()
 const bodyParser = require('body-parser');
 
 const indexRouter=require('./routes/index')
@@ -31,8 +34,22 @@ app.use('/contact',contactRouter);
 app.use('/booking',bookingRouter);//we tell which router to handle the route
 //integrate database
 
-const port=3000;
+  const pool  = mysql.createPool({
+    connectionLimit : 10,
+    host            : process.env.MY_SQL_HOST,
+    user            : process.env.MY_SQL_USER,
+    password        : process.env.MY_SQL_PASSWORD,
+    database        : process.env.MY_SQL_DATABASE
+  });
+   
+  pool.query('SELECT * FROM users where user_id=2', function (error, results, fields) {
+    if (error) throw error;
+    console.log('The users are: ', results);
+  });
+   
 
-app.listen(process.env.PORT||3000,()=>{
+const port=8080;
+
+app.listen(process.env.PORT||8080,()=>{
     console.log(`this application started successfully on port:${port}`);
 })
