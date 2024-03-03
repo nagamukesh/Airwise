@@ -3,7 +3,7 @@ const https=require("https");
 const mysql=require("mysql");
 const path=require("path");
 const dotenv= require('dotenv');
-const bcrypt=require('bcrypt');
+const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 
 dotenv.config()
