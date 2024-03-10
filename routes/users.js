@@ -25,15 +25,27 @@ const pool  = mysql.createPool({
     database        : process.env.MY_SQL_DATABASE
   });
 
-router.post('/',encoder,(req,res)=>{
+router.post('/',encoder,async(req,res)=>{
     const username=req.body.name 
     const password=req.body.password
+    const role=0;
     console.log("username:",username);
     console.log(password);
-    pool.query('SELECT l.username from login as l where l.username=? ', [username] ,(error, results)=>{
+    pool.query('SELECT * from login  where username=? ',[username] ,(error,result,fields)=>{
         if (error) console.log(error);
-        
-    });
+        if(result[0]){
+            if(result[0].password===password){
+                const token=jwt.sign({username:username},process.env.JWT_SECRET)
+                res.send("login successful")
+            }
+            else{
+                res.send('Login failed! incorrect password')
+            }
+        }
+        else{
+            res.send("user not found!")
+        }
+    });//authentification is not working!
 })
 
 router.get('/new',(req,res)=>{
