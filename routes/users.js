@@ -45,7 +45,7 @@ router.post('/',encoder,async(req,res)=>{
         else{
             res.send("user not found!")
         }
-    });//authentification is not working!
+    });//authentification is working!
 })
 
 router.get('/new',(req,res)=>{
