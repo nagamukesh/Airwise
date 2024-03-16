@@ -52,6 +52,33 @@ router.get('/new',(req,res)=>{
     res.render('users/new')
 })
 
+router.post('/new',encoder,async(req,res)=>{
+    console.log(req.body.email)
+    const email=req.body.email;
+    const username=req.body.name;
+    const password=req.body.password;
+    console.log("username:",username)
+    console.log(password);
+    pool.query('SELECT email,username from login where email=? or username=?',[email,username],(error,result,fields)=>{
+        if(error){
+            console.log(error);
+        }
+        else if(result.length!==0){
+            res.send("user already exists!");
+        }
+        else{
+            pool.query('INSERT into login (username,password,email) values(?,?,?)',[username,password,email],(error,result,fields)=>{
+                if(error){
+                    throw error;
+                }
+                else{
+                    res.send("user registered success");
+                }
+            })
+        }
+    })
+})
+
 // router.post('/'(req,res)={
 
 // })
