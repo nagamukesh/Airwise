@@ -47,13 +47,13 @@ app.use('/booking',bookingRouter);//we tell which router to handle the route
     console.log('The users are: ', results);
   });
    
-app.get('/login',(req,res)=>{
-  let sql='CREATE TABLE login (username varchar(20),password varchar(20))';
-  pool.query(sql,(err,result)=>{
-    if(err) throw err;
-    res.send('table created');
-  })
-});
+// app.get('/login',(req,res)=>{
+//   let sql='CREATE TABLE login (username varchar(20),password varchar(20))';
+//   pool.query(sql,(err,result)=>{
+//     if(err) throw err;
+//     res.send('table created');
+//   })
+// });
 
 const port=8080;
 

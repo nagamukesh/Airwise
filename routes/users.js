@@ -36,7 +36,8 @@ router.post('/',encoder,async(req,res)=>{
         if(result[0]){
             if(result[0].password===password){
                 const token=jwt.sign({username:username},process.env.JWT_SECRET)
-                res.send("login successful")
+                // res.json({message:"login successful"})
+                res.render('home')
             }
             else{
                 res.send('Login failed! incorrect password')
@@ -72,7 +73,7 @@ router.post('/new',encoder,async(req,res)=>{
                     throw error;
                 }
                 else{
-                    res.send("user registered success");
+                    res.render('home')
                 }
             })
         }
