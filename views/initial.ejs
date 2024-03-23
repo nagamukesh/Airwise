@@ -3,24 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Welcome to Airwise!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        nav {
+            margin-top: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin-right: 20px;
+        }
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #4CAF50;
+            padding: 10px 20px;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Airwise!</h1>
-    <p>login or register to enter</p>
-    <nav>
-        <!-- <a href="/">AirWise</a> -->
-        <ul>
-            <li>
-                <a href="/users">Login</a>
-            </li>
-            <li>
-                <a href="/users/new">Sign-in/Sign-up</a>
-            </li>
-            <li>
-                <a href="/contact">Customer-Care</a>
-            </li>
-        </ul>
-    </nav>
+    <div class="container">
+        <h1>Welcome to Airwise!</h1>
+        <p>Login or register to enter</p>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/users">Login</a>
+                </li>
+                <li>
+                    <a href="/users/new">Sign-in/Sign-up</a>
+                </li>
+                <li>
+                    <a href="/contact">Customer Care</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </body>
 </html>

@@ -33,19 +33,19 @@ router.post('/',encoder,async(req,res)=>{
     console.log("flightID:",flightID)
     pool.query('SELECT flightID from flights where flightID=?',[flightID],(error,result,fields)=>{
         if(error){
-            console.log(error);
+            res.status(500).json({ error: 'Error fetching data' });
         }
         else if(result.length===0){
-            res.send("Invalid Flight ID");
+            res.status(404).send("flight not found");
         }
         else{
-            res.send("valid FlightID");
+            res.render('searchResult', { flights: result });
         }
     })
 })
 
-// router.post('/'(req,res)={
-
-// })
+router.post('/selectedFlight',(req,res)=>{
+    res.render(selectedFlight);
+})
 
 module.exports=router

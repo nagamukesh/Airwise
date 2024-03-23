@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search Result</title>
+    <style>
+        .flight-option {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flight Search Result</h1>
+    <form action="/selectedFlight" method="post">
+        <% flights.forEach(flight => { %>
+            <div class="flight-option">
+                <input type="radio" id="flight_<%= flight.flightID %>" name="selectedFlight" value="<%= flight.flightID %>">
+                <label for="flight_<%= flight.flightID %>">Flight ID: <%= flight.flightID %></label>
+                <!-- Add more flight details here -->
+            </div>
+        <% }); %>
+        <button type="submit">Select Flight</button>
+    </form>
+</body>
+</html>
+

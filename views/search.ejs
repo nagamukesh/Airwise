@@ -1,17 +1,77 @@
-hello welcome to Airwise search!
-
-<p>Search for the flight here</p>
-
-<form action="/search" method="post">
-    <div>
-        <label for="flightID">enter flight ID</label>
-        <input type="text" id="flighID" name="flightID" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airwise Flight Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+        }
+        p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Airwise Search</h1>
+        <p>Search for a flight below:</p>
+        <form action="/search" method="post">
+            <div>
+                <label for="flightID">Enter Flight ID</label>
+                <input type="text" id="flightID" name="flightID" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
     </div>
-    <!-- <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-    </div> -->
-    <button type="submit">submit</button>
-</form>
+</body>
+</html>
 
-<!-- <a href="/users/new">Register</a> -->
+

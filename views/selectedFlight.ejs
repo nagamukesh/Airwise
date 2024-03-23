@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Flight Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .flight-details {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .flight-details h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .flight-details p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Selected Flight Details</h1>
+
+        <div class="flight-details">
+            <h2>Flight Information</h2>
+            <p><strong>Flight ID:</strong> <%= flight.flightID %></p>
+            <p><strong>Departure Time:</strong> <%= flight.departureTime %></p>
+            <p><strong>Arrival Time:</strong> <%= flight.arrivalTime %></p>
+            <!-- Add more flight details as needed -->
+        </div>
+
+        <!-- Add more sections for additional flight details -->
+
+        <a href="/">Back to Search</a>
+    </div>
+</body>
+</html>
