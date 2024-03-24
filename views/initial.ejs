@@ -16,16 +16,18 @@
             margin: 50px auto;
             padding: 20px;
             background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
         h1 {
-            color: #333;
+            color: #4CAF50;
+            margin-bottom: 10px;
         }
         p {
             color: #666;
             margin-bottom: 20px;
+            font-size: 18px;
         }
         nav {
             margin-top: 20px;
@@ -45,21 +47,21 @@
         }
         nav ul li a {
             text-decoration: none;
-            color: #4CAF50;
+            color: #fff;
             padding: 10px 20px;
-            border: 1px solid #4CAF50;
             border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
+            background-color: #4CAF50;
+            transition: background-color 0.3s;
+            display: inline-block;
         }
         nav ul li a:hover {
-            background-color: #4CAF50;
-            color: #fff;
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Airwise!</h1>
+        <h1>Welcome to <span style="font-weight: bold;">Airwise!</span></h1>
         <p>Login or register to enter</p>
         <nav>
             <ul>
@@ -77,3 +79,4 @@
     </div>
 </body>
 </html>
+
