@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selected Flight Details</title>
+    <title>Seat Selection</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,24 +13,24 @@
             margin: 0 auto;
             padding: 20px;
         }
-        .flight-details {
+        .seat-details {
             background-color: #f9f9f9;
             padding: 15px;
             border-radius: 5px;
             margin-bottom: 20px;
         }
-        .flight-details h2 {
+        .seat-details h2 {
             margin-top: 0;
             color: #333;
         }
-        .flight-details p {
+        .seat-details p {
             margin: 5px 0;
         }
-        .seat-selection-btn {
+        .seat-selection-form {
             margin-top: 20px;
             text-align: center;
         }
-        .seat-selection-btn input[type="submit"] {
+        .seat-selection-form input[type="submit"] {
             background-color: #4CAF50;
             color: #fff;
             padding: 10px 20px;
@@ -39,27 +39,29 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .seat-selection-btn input[type="submit"]:hover {
+        .seat-selection-form input[type="submit"]:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Selected Flight Details</h1>
+        <h1>Seat Selection</h1>
 
-        <div class="flight-details">
+        <div class="seat-details">
             <h2>Flight Information</h2>
-            <p><strong>Flight ID:</strong> <%= flight.flightID %></p>
-            <p><strong>Departure Time:</strong> <%= flight.departureTime %></p>
-            <p><strong>Arrival Time:</strong> <%= flight.arrivalTime %></p>
-            <!-- Add more flight details as needed -->
+            <p><strong>Flight ID:</strong> <%= seatInfo.flightID %></p>
+            <!-- Display other flight details -->
         </div>
 
-        <div class="seat-selection-btn">
-            <form action="/seatSelection" method="post">
-                <input type="hidden" name="flightID" value="<%= flight.flightID %>">
-                <input type="submit" value="Select Seats">
+        <!-- Add seat selection form here -->
+        <div class="seat-selection-form">
+            <form action="/payment" method="post">
+                <h2>Select Number of Seats</h2>
+                <p><label for="numSeats">Number of Seats:</label></p>
+                <p><input type="number" id="numSeats" name="numSeats" min="1" required></p>
+                <input type="hidden" name="flightID" value="<%= seatInfo.flightID %>">
+                <input type="submit" value="Proceed to Payment">
             </form>
         </div>
 
@@ -67,5 +69,4 @@
     </div>
 </body>
 </html>
-
 

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        form input, form select {
+            margin-bottom: 10px;
+        }
+        form button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Page</h1>
+        
+        <!-- Form to add a new flight -->
+        <form action="/admin/add-flight" method="post">
+            <h2>Add New Flight</h2>
+            <input type="text" name="flightID" placeholder="Flight ID" required>
+            <input type="text" name="departure" placeholder="Departure" required>
+            <input type="text" name="destination" placeholder="Destination" required>
+            <input type="text" name="departureTime" placeholder="Departure Time" required>
+            <input type="text" name="arrivalTime" placeholder="Arrival Time" required>
+            <button type="submit">Add Flight</button>
+        </form>
+
+        <!-- Form to update an existing flight -->
+        <form action="/admin/update-flight" method="post">
+            <h2>Update Flight</h2>
+            <input type="text" name="flightID" placeholder="Flight ID" required>
+            <input type="text" name="departure" placeholder="Departure" required>
+            <input type="text" name="destination" placeholder="Destination" required>
+            <input type="text" name="departureTime" placeholder="Departure Time" required>
+            <input type="text" name="arrivalTime" placeholder="Arrival Time" required>
+            <button type="submit">Update Flight</button>
+        </form>
+
+        <!-- Form to remove an existing flight -->
+        <form action="/admin/remove-flight" method="post">
+            <h2>Remove Flight</h2>
+            <input type="text" name="flightID" placeholder="Flight ID to remove" required>
+            <button type="submit">Remove Flight</button>
+        </form>
+
+        <!-- Table to display available flights -->
+        <h2>Available Flights</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Flight ID</th>
+                    <th>Departure</th>
+                    <th>Destination</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% flights.forEach(flight => { %>
+                    <tr>
+                        <td><%= flight.flightID %></td>
+                        <td><%= flight.departure %></td>
+                        <td><%= flight.destination %></td>
+                        <td><%= flight.departureTime %></td>
+                        <td><%= flight.arrivalTime %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>
+
+

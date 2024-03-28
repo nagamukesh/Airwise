@@ -10,6 +10,8 @@ const authorRouter=require('./routes/users')
 const searchRouter=require('./routes/search')
 const bookingRouter=require('./routes/booking')
 const contactRouter=require('./routes/contact')
+const seatsRouter=require('./routes/seatSelection')
+const adminRouter=require('./routes/Admin')
 
 const expressLayouts=require('express-ejs-layouts');
 
@@ -34,7 +36,9 @@ app.use('/',indexRouter);
 app.use('/users',authorRouter);
 app.use('/search',searchRouter);
 app.use('/contact',contactRouter);
-app.use('/booking',bookingRouter);//we tell which router to handle the route
+app.use('/booking',bookingRouter);
+app.use('/admin',adminRouter);
+app.use('/seatSelection',seatsRouter);//we tell which router to handle the route
 //integrate database
 
   const pool  = mysql.createPool({
