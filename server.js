@@ -48,19 +48,6 @@ app.use('/seatSelection',seatsRouter);//we tell which router to handle the route
     password        : process.env.MY_SQL_PASSWORD,
     database        : process.env.MY_SQL_DATABASE
   });
-   
-  // pool.query('SELECT * FROM user where user_id=2', function (error, results, fields) {
-  //   if (error) throw error;
-  //   console.log('The users are: ', results);
-  // });
-   
-// app.get('/login',(req,res)=>{
-//   let sql='CREATE TABLE login (username varchar(20),password varchar(20))';
-//   pool.query(sql,(err,result)=>{
-//     if(err) throw err;
-//     res.send('table created');
-//   })
-// });
 
 app.post('/submit_contact_form', (req, res) => {
   // Assuming you're using body-parser middleware to parse form data

@@ -9,23 +9,25 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f3f3f3;
+            background-image: url('flight_1.jpg'); /* Path to your background image */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Do not repeat the background image */
+            color: #333; /* Dark text color */
         }
         .container {
             max-width: 400px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Enhanced box shadow */
         }
         h1 {
             margin-top: 0;
-            color: #333;
+            color: #004346; /* Dark green */
             text-align: center;
         }
         p {
-            color: #666;
             text-align: center;
             margin-bottom: 20px;
         }
@@ -35,27 +37,29 @@
         label {
             display: block;
             margin-bottom: 5px;
-            color: #666;
+            color: #666; /* Medium text color */
         }
         input[type="text"] {
             width: calc(100% - 22px);
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
-            border-radius: 3px;
+            border-radius: 5px; /* Rounded corners */
             box-sizing: border-box;
+            color: #333; /* Dark text color */
         }
         button[type="submit"] {
             width: 100%;
             padding: 10px;
-            background-color: #4CAF50;
+            background-color: #09BC8A; /* Light green */
             color: #fff;
             border: none;
-            border-radius: 3px;
+            border-radius: 5px; /* Rounded corners */
             cursor: pointer;
+            transition: background-color 0.3s ease; /* Add transition effect */
         }
         button[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #F67E7D; /* Light brown on hover */
         }
     </style>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -64,7 +68,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Airwise Search</h1>
+        <h1>Welcome to Airwise</h1>
         <p>Search for a flight below:</p>
         <form action="/search" method="post">
             <div>

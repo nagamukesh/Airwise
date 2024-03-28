@@ -42,13 +42,21 @@ router.post('/', (req, res) => {
             console.log(selectedFlightID);
             res.status(404).send("Selected flight not found");
         } else {
-            const flight = result[0]; // Assuming only one flight will be found with the given ID
-            res.render('seatSelection', { seatInfo: seatInfo });
+            pool.query('SELECT seat_class, count(*) as num_seats FROM seats WHERE flightID=? AND availability=? GROUP BY seat_class', [selectedFlightID, 1], (error, results) => {
+                if (error) {
+                    console.error('Error fetching data:', error);
+                    res.status(500).json({ error: 'Error fetching data' });
+                } else {
+                    const seats = results.map(row => ({
+                        seat_class: row.seat_class,
+                        num_seats: row.num_seats
+                    }));
+                    res.render('seatSelection', { seatInfo: { flightID: selectedFlightID, seats: seats } });
+                }
+            });
         }
+        
     });
-
-    // Pass seat information to the seatSelection page
-
 });
 
 module.exports = router;

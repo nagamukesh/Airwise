@@ -30,6 +30,19 @@
             margin-top: 20px;
             text-align: center;
         }
+        .seat-selection-form input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            color: #333;
+            transition: box-shadow 0.3s;
+        }
+        .seat-selection-form input[type="number"]:focus {
+            box-shadow: 0 0 10px #096ebc;
+        }
         .seat-selection-form input[type="submit"] {
             background-color: #4CAF50;
             color: #fff;
@@ -41,6 +54,10 @@
         }
         .seat-selection-form input[type="submit"]:hover {
             background-color: #45a049;
+        }
+        .warning {
+            color: red;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -56,10 +73,13 @@
 
         <!-- Add seat selection form here -->
         <div class="seat-selection-form">
-            <form action="/payment" method="post">
-                <h2>Select Number of Seats</h2>
-                <p><label for="numSeats">Number of Seats:</label></p>
-                <p><input type="number" id="numSeats" name="numSeats" min="1" required></p>
+            <form action="/payment" method="post" onsubmit="return validateSeats()">
+                <h2>Select Number of Seats for Each Class</h2>
+                <% seatInfo.seats.forEach(seat => { %>
+                    <p><label for="<%= seat.seat_class %>"><%= seat.seat_class %> (<%= seat.num_seats %> seats available)</label></p>
+                    <p><input type="number" id="<%= seat.seat_class %>" name="class[<%= seat.seat_class %>]" min="0" max="<%= seat.num_seats %>" value="0" required></p>
+                    <div id="<%= seat.seat_class %>Warning" class="warning"></div>
+                <% }); %>
                 <input type="hidden" name="flightID" value="<%= seatInfo.flightID %>">
                 <input type="submit" value="Proceed to Payment">
             </form>
@@ -67,6 +87,44 @@
 
         <a href="/search">Back to Search</a>
     </div>
+
+    <script>
+        function validateSeats() {
+    const seatInputs = document.querySelectorAll('.seat-selection-form input[type="number"]');
+    let isValid = true;
+    let totalSeats = 0;
+
+    seatInputs.forEach(input => {
+        const classInput = input.id;
+        const availableSeats = parseInt(input.getAttribute('max'));
+        const selectedSeats = parseInt(input.value);
+        const warningDiv = document.getElementById(`${classInput}Warning`);
+
+        if (selectedSeats > availableSeats) {
+            warningDiv.textContent = `Cannot select more than ${availableSeats} seats for ${classInput}.`;
+            isValid = false;
+        } else {
+            warningDiv.textContent = '';
+        }
+
+        totalSeats += selectedSeats;
+    });
+
+    if (totalSeats === 0) {
+        alert('Please select at least one ticket.');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+    </script>
 </body>
 </html>
+
+
+
+
+
+
 
