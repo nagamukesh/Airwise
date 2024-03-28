@@ -31,7 +31,8 @@ router.post('/',encoder,async(req,res)=>{
     console.log(req.body.flightID);
     const flightID=req.body.flightID;
     console.log("flightID:",flightID)
-    pool.query('SELECT flightID from flights where flightID=?',[flightID],(error,result,fields)=>{
+    
+    pool.query('SELECT * from flight where flightID=?',[flightID],(error,result,fields)=>{
         if(error){
             res.status(500).json({ error: 'Error fetching data' });
         }

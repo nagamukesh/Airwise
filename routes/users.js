@@ -31,7 +31,7 @@ router.post('/',encoder,async(req,res)=>{
     const role=0;
     console.log("username:",username);
     console.log(password);
-    pool.query('SELECT * from login  where username=? ',[username] ,(error,result,fields)=>{
+    pool.query('SELECT * from user where user_name=? ',[username] ,(error,result,fields)=>{
         if (error) console.log(error);
         if(result[0]){
             if(result[0].password===password){
@@ -60,7 +60,7 @@ router.post('/new',encoder,async(req,res)=>{
     const password=req.body.password;
     console.log("username:",username)
     console.log(password);
-    pool.query('SELECT email,username from login where email=? or username=?',[email,username],(error,result,fields)=>{
+    pool.query('SELECT email,username from user where email=? or username=?',[email,username],(error,result,fields)=>{
         if(error){
             console.log(error);
         }
@@ -68,7 +68,7 @@ router.post('/new',encoder,async(req,res)=>{
             res.send("user already exists!");
         }
         else{
-            pool.query('INSERT into login (username,password,email) values(?,?,?)',[username,password,email],(error,result,fields)=>{
+            pool.query('INSERT into user (username,password,email) values(?,?,?)',[username,password,email],(error,result,fields)=>{
                 if(error){
                     throw error;
                 }
