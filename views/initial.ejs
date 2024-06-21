@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Airwise!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('11.jpg'); /* Add the path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        nav {
+            margin-top: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin-right: 20px;
+        }
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #4CAF50;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.6em;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            background-color: #111;
+        }
+        nav ul li a .arrow-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        nav ul li a .arrow {
+            margin-top: 1px;
+            width: 10px;
+            background: #4CAF50;
+            height: 2px;
+            position: relative;
+            transition: 0.2s;
+        }
+        nav ul li a .arrow::before {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            border: solid #fff;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            top: -3px;
+            right: 3px;
+            transition: 0.2s;
+            padding: 3px;
+            transform: rotate(-45deg);
+        }
+        nav ul li a:hover .arrow {
+            background: #fff;
+        }
+        nav ul li a:hover .arrow:before {
+            right: 0;
+        }
+        .mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #4CAF50;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #111;
+            color: #fff;
+        }
+        .dark-mode .container {
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+        .dark-mode nav ul li a {
+            background-color: #4CAF50;
+        }
+        .dark-mode nav ul li a:hover {
+            background-color: #4CAF50;
+        }
+        .dark-mode .mode-toggle {
+            color: #4CAF50; /* Button color remains the same in dark mode */
+        }
+    </style>
+</head>
+<body>
+    <button class="mode-toggle" onclick="toggleMode()">🌞</button>
+    <div class="container">
+        <h1>Welcome to <span style="font-weight: bold;">Airwise!</span></h1>
+        <p>Login or register to enter</p>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/users">
+                        <span>Login</span>
+                        <span class="arrow-wrapper">
+                            <span class="arrow"></span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/users/new">
+                        <span>Sign-in/Sign-up</span>
+                        <span class="arrow-wrapper">
+                            <span class="arrow"></span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contact">
+                        <span>Customer Care</span>
+                        <span class="arrow-wrapper">
+                            <span class="arrow"></span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            const modeButton = document.querySelector('.mode-toggle');
+
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                modeButton.innerText = '🌞';
+            } else {
+                body.classList.add('dark-mode');
+                modeButton.innerText = '🌙';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

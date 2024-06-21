@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Seat Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    .seat-group {
+      margin-bottom: 30px;
+    }
+
+    .seat-group h2 {
+      margin-top: 20px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    .seats-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .seat {
+      width: 40px;
+      height: 40px;
+      margin: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .seat.available {
+      background-color: #5cb85c;
+      color: #fff;
+    }
+
+    .seat.unavailable {
+      background-color: #d9534f;
+      color: #fff;
+    }
+
+    .seat.selected {
+      background-color: #5bc0de;
+      color: #fff;
+    }
+
+    .price {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .price strong {
+      color: #333;
+    }
+
+    #selectedSeatsContainer {
+      margin-top: 20px;
+    }
+
+    #proceedBtn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #proceedBtn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    #proceedBtn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Flight Seat Booking</h1>
+
+    <div class="seat-group">
+      <h2>Economy Class</h2>
+      <div class="seats-container" id="economySeats"></div>
+      <div class="price"><strong>Price:</strong> <%= pricing.Economy %></div>
+    </div>
+
+    <div class="seat-group">
+      <h2>Business Class</h2>
+      <div class="seats-container" id="businessSeats"></div>
+      <div class="price"><strong>Price:</strong> <%= pricing.Business %></div>
+    </div>
+
+    <div class="seat-group">
+      <h2>First Class</h2>
+      <div class="seats-container" id="firstSeats"></div>
+      <div class="price"><strong>Price:</strong> <%= pricing.First %></div>
+    </div>
+
+    <form id="seatSelectionForm" action="/payment" method="POST">
+      <input type="hidden" name="flightID" value="<%= seatInfo.flightID %>">
+      <div id="selectedSeatsContainer"></div>
+      <button type="submit" id="proceedBtn" disabled>Proceed to Payment</button>
+    </form>
+
+    <form id="redirectForm" action="/search" method="post">
+      <input type="hidden" name="username" value="<%= seatInfo.user_name %>">
+    </form>
+  </div>
+
+  <script>
+    const seats = <%- JSON.stringify(seatInfo.seats) %>;
+    const flightID = <%- JSON.stringify(seatInfo.flightID) %>;
+
+    const economySeats = document.getElementById('economySeats');
+    const businessSeats = document.getElementById('businessSeats');
+    const firstSeats = document.getElementById('firstSeats');
+    const selectedSeatsContainer = document.getElementById('selectedSeatsContainer');
+    const proceedBtn = document.getElementById('proceedBtn');
+
+    let selectedSeats = [];
+
+    function renderSeats(seatClass, container) {
+      const classSeats = seats.filter(seat => seat.seat_class === seatClass);
+      classSeats.forEach(seat => {
+        const seatElement = document.createElement('div');
+        seatElement.classList.add('seat');
+        seatElement.textContent = seat.seat_number;
+        if (seat.availability) {
+          seatElement.classList.add('available');
+          seatElement.addEventListener('click', () => {
+            if (seatElement.classList.contains('selected')) {
+              seatElement.classList.remove('selected');
+              selectedSeats = selectedSeats.filter(s => s !== seat.seat_id);
+            } else {
+              seatElement.classList.add('selected');
+              selectedSeats.push(seat.seat_id);
+            }
+            updateSelectedSeatsContainer();
+            proceedBtn.disabled = selectedSeats.length === 0;
+          });
+        } else {
+          seatElement.classList.add('unavailable');
+        }
+        container.appendChild(seatElement);
+      });
+    }
+
+    function updateSelectedSeatsContainer() {
+      selectedSeatsContainer.innerHTML = '';
+      selectedSeats.forEach(seatId => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'selectedSeats[]';
+        input.value = seatId;
+        selectedSeatsContainer.appendChild(input);
+      });
+    }
+
+    renderSeats('Economy', economySeats);
+    renderSeats('Business', businessSeats);
+    renderSeats('First', firstSeats);
+
+    proceedBtn.disabled = true; // Disable the button initially
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+

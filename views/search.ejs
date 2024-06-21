@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airwise Flight Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('flight_1.jpg'); /* Path to your background image */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Do not repeat the background image */
+            color: #333; /* Dark text color */
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Enhanced box shadow */
+        }
+        h1 {
+            margin-top: 0;
+            color: #004346; /* Dark green */
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666; /* Medium text color */
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px; /* Rounded corners */
+            box-sizing: border-box;
+            color: #333; /* Dark text color */
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #09BC8A; /* Light green */
+            color: #fff;
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Add transition effect */
+        }
+        button[type="submit"]:hover {
+            background-color: #F67E7D; /* Light brown on hover */
+        }
+    </style>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Airwise</h1>
+        <p>Search for a flight below:</p>
+        <form action="/search" method="post">
+            <div>
+                <label for="Departure_City">Departure City</label>
+                <input type="text" id="Departure_City" name="Departure_City" required>
+            </div>
+            <div>
+                <label for="Destination_City">Destination City</label>
+                <input type="text" id="Destination_City" name="Destination_City" required>
+            </div>
+            <div>
+                <label for="departure_date">Date</label>
+                <input type="text" id="departure_date" name="departure_date" required>
+            </div>
+            <input type="hidden" name="username" value="<%= result.user_name %>">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        $(function() {
+            $("#departure_date").datepicker({
+                dateFormat: 'yy-mm-dd', // Set the date format
+                minDate: 0, // Set minimum date to today
+                maxDate: '+1Y', // Set maximum date to one year ahead
+                changeMonth: true, // Enable month dropdown
+                changeYear: true // Enable year dropdown
+            });
+        });
+    </script>
+        <form id="redirectForm" action="/search" method="post">
+            <input type="hidden" name="username" value="<%= result.user_name %>">
+        </form>
+</body>
+</html>
+
+

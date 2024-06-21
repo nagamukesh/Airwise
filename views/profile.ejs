@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-info {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .profile-info p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .booking {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .booking p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .booking strong {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+        <div class="profile-info">
+            <p><strong>Username:</strong> <%= result[0].user_name %></p>
+            <p><strong>Email:</strong> <%= result[0].email %></p>
+            <!-- Add more user details as needed -->
+        </div>
+
+        <!-- Display each booking associated with the user -->
+        <% result.forEach(booking => { %>
+            <div class="booking">
+                <p><strong>Booking ID:</strong> <%= booking.Booking_id %></p>
+                <p><strong>Booking Date:</strong> <%= booking.booking_date %></p>
+                <p><strong>Flight ID:</strong> <%= booking.flightID %></p>
+                <p><strong>Departure:</strong> <%= booking.departure %></p>
+                <p><strong>Destination:</strong> <%= booking.destination %></p>
+                <p><strong>Departure Date:</strong> <%= booking.departure_date %></p>
+                <p><strong>Arrival Date:</strong> <%= booking.arrival_date %></p>
+                <p><strong>Departure Time:</strong> <%= booking.departureTime %></p>
+                <p><strong>Arrival Time:</strong> <%= booking.arrivalTime %></p>
+                <!-- Add more flight details as needed -->
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>
+
+
+
+

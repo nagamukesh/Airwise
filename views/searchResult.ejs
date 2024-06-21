@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f3f3f3;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .three{
+            margin:10px 
+        }
+        .one{
+            display: flex;
+            flex-direction: column;
+        }
+        .two{
+            display: flex;
+            flex-direction: column;
+        }
+        .flight-option {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .flight-option:hover {
+            border-color: #4CAF50;
+        }
+        .flight-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .flight-details label {
+            font-weight: bold;
+        }
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flight Search Result</h1>
+    <form action="/search/selectedFlight" method="post">
+        <% flights.forEach(flight => { %>
+            <div class="flight-option">
+                <div class="flight-details">
+                    <div>
+                        <input type="radio" id="flight_<%= flight.flightID %>" name="selectedFlight" value="<%= flight.flightID %>">
+                        <label for="flight_<%= flight.flightID %>">Flight ID: <%= flight.flightID %></label>
+                    </div>
+                    <div class="one">
+                        <div class="three"><label>Departure: <%= flight.departure %></label></div>
+                        <div class="three"><label>Destination: <%= flight.destination %></label></div>
+                    </div>
+                    <div class="two">
+                        <div class="three"><label>Departure Time: <%= flight.departureTime %></label></div>
+                        <div class="three"><label>Arrival Time: <%= flight.arrivalTime %></label></div>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+        <button type="submit">Select Flight</button>
+    </form>
+    <form id="redirectForm" action="/search/selectedFlight" method="post">
+        <input type="hidden" name="username" value="<%= flights.user_name %>">
+    </form>
+</body>
+</html>
+
+

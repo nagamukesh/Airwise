@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('fly_5.jpg'); /* Set your background image */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Do not repeat the background image */
+            background-attachment: fixed; /* Keep the background image fixed while scrolling */
+            background-position: center; /* Center the background image */
+            color: #333; /* Text color */
+        }
+
+        .card {
+            width: 130px;
+            height: 70px;
+            background-color: #22577A; /* Changed background color */
+            border: none;
+            border-radius: 10px;
+            padding-top: 10px;
+            position: absolute;
+            top: 20px; /* Adjust top position */
+            right: 30px; /* Adjust right position */
+            font-family: inherit;
+}
+
+.card span {
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  display: block;
+  padding-top: 10px;
+  font-size: 1.3em;
+}
+
+.card .job {
+  font-weight: 400;
+  color: white;
+  display: block;
+  text-align: center;
+  padding-top: 5px;
+  font-size: 1em;
+}
+
+.card .img {
+  width: 70px;
+  height: 70px;
+  background: #e8e8e8;
+  border-radius: 100%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.card button {
+  padding: 8px 25px;
+  display: block;
+  margin: auto;
+  border-radius: 8px;
+  border: none;
+  margin-top: 30px;
+  background: #e8e8e8;
+  color: #111111;
+  font-weight: 600;
+}
+
+.card button:hover {
+  background: #212121;
+  color: #ffffff;
+}
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            text-align: center;
+        }
+        .alert {
+            padding: 15px;
+            background-color: #4CAF50; /* Green alert background */
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .alert .closebtn {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .alert .closebtn:hover {
+            color: black;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px; /* Larger heading size */
+        }
+        p {
+            color: #333; /* Adjusted text color for better contrast */
+            margin-bottom: 20px;
+            font-size: 18px; /* Larger paragraph size */
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .option {
+            flex: 1;
+            background-color: #22577A; /* Changed background color */
+            border-radius: 10px;
+            padding: 20px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease; /* Added transition effect */
+        }
+        .option:last-child {
+            margin-right: 0;
+        }
+        .option a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px; /* Larger font size */
+        }
+        .option:hover {
+            background-color: #38A3A5; /* Changed background color on hover */
+        }
+        .logo {
+            color: #333; /* Match text color */
+        }
+    </style>
+</head>
+<body>
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong>Login/Sign-up successful.</strong>
+    </div> 
+    <div class="container">
+        <h1>Welcome to <span class="logo" style="font-weight: bold; color: #333333;">AirWise</span></h1>
+        <p>Your one-stop destination for all flight ticket bookings!</p>
+        <nav>
+            <div class="option">
+                <a href="/search">Search</a>
+            </div>
+            <div class="option">
+                <a href="/contact">Customer Care</a>
+            </div>
+            <div class="option">
+                <a href="/booking">Flights</a>
+            </div>
+        </nav>
+    </div>
+    <!-- <div class="profile">
+        <a href="/profile">Profile</a>
+    </div> -->
+
+    <form id="redirectForm" action="/profile" method="post">
+        <div class="card">
+            <div class="card-border-top"></div>
+            <input type="hidden" name="user_name" value="<%= result.user_name %>">
+            <button type="submit"><%= result.user_name %></button>
+        </div>
+    </form>
+
+    
+</body>
+</html>
+
+

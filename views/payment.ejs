@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .seat {
+      display: inline-block;
+      margin: 5px;
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .passenger-details {
+      margin-top: 20px;
+    }
+    .class {
+      margin-bottom: 10px;
+    }
+    .total-price {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+    label {
+      margin-right: 10px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      padding: 8px;
+      margin-bottom: 10px;
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #ced4da;
+      box-sizing: border-box;
+    }
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Payment</h1>
+    <p><strong>Flight ID:</strong> <%= details.flightID %></p>
+    <p><strong>Selected Seats:</strong></p>
+    <div>
+      <% details.selectedSeats.forEach(seatId => { %>
+        <span class="seat"><%= seatId %></span>
+        <input type="hidden" name="selectedSeats[]" value="<%= seatId %>">
+      <% }); %>
+    </div>
+    <p><strong>Availability and Price for Each Class:</strong></p>
+    <div>
+      <% Object.entries(seatsAvailability).forEach(([seatClass, seats]) => { %>
+        <div class="class">
+          <h3><%= seatClass %></h3>
+          <p><strong>Price:</strong> <%= pricing[seatClass] %></p>
+        </div>
+      <% }); %>
+    </div>
+    <p class="total-price">Total Price: <%= totalPrice %></p>
+    <p class="total-price">Total Price including taxes: <%= totalPrice*1.7 %></p>
+    <form id="redirectForm" action="/search" method="post">
+      <input type="hidden" name="username" value="<%= details.user_name %>">
+    </form>
+    <div class="passenger-details">
+      <form id="paymentForm" action="payment/paymentdone" method="POST">
+        <input type="hidden" name="flightID" value="<%= details.flightID %>">
+        <% details.selectedSeats.forEach(seatId => { %>
+          <input type="hidden" name="selectedSeats[]" value="<%= seatId %>">
+          <label for="passengerName_<%= seatId %>">Passenger Name:</label>
+          <input type="text" id="passengerName_<%= seatId %>" name="passengerName_<%= seatId %>" placeholder="Passenger Name" required><br>
+          <label for="passengerEmail_<%= seatId %>">Passenger Email:</label>
+          <input type="email" id="passengerEmail_<%= seatId %>" name="passengerEmail_<%= seatId %>" placeholder="Passenger Email" required><br>
+          <label for="passengerPhone_<%= seatId %>">Passenger Phone:</label>
+          <input type="tel" id="passengerPhone_<%= seatId %>" name="passengerPhone_<%= seatId %>" placeholder="Passenger Phone" required><br><br>
+        <% }); %>
+        <button type="submit">Confirm Payment</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
